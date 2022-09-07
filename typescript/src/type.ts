@@ -38,7 +38,7 @@ function greet(user: User) {
 // Literal Types
 
 
-// 接口       Interfaces     interface   doc有但上課沒講，先不嘗試理解
+// 接口       Interfaces     interface
 interface Building { name: string; birth: number; }
 
 // type 跟 interface 差別：
