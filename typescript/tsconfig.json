@@ -14,7 +14,7 @@
     "target": "es2016",                                  /* 設定編譯的js版本，ex:es5,es6 */
     // "lib": ["DOM", "DOM.Iterable", "ESNext", "ScriptHost"], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
-    // "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
+    "experimentalDecorators": true,                      /* 使用裝飾器 Enable experimental support for TC39 stage 2 draft decorators. */
     // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
     // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
     // "jsxFragmentFactory": "",                         /* Specify the JSX Fragment reference used for fragments when targeting React JSX emit e.g. 'React.Fragment' or 'Fragment'. */
@@ -49,7 +49,7 @@
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
     // "sourceMap": true,                                /* 開啟後會編譯出".js.map"檔，可在開發者工具中直接看到ts檔 */
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
-    "outDir": "./dist",                                   /* 編譯後檔案存放處，ex:"./dist"，編譯時會保留資料夾結構 */
+    "outDir": "./dist",                                  /* 編譯後檔案存放處，ex:"./dist"，編譯時會保留資料夾結構 */
     // "removeComments": true,                           /* 不編譯所有註解 */
     // "noEmit": true,                                   /* 不編譯 */
     // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
@@ -85,10 +85,10 @@
     // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
     // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
     // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
-    "noUnusedLocals": true,                           /* 警告未使用的區域local變數 */
-    "noUnusedParameters": true,                       /* 警告未使用的區域function參數 */
+    "noUnusedLocals": true,                              /* 警告未使用的區域local變數 */
+    "noUnusedParameters": true,                          /* 警告未使用的區域function參數 */
     // "exactOptionalPropertyTypes": true,               /* Interpret optional property types as written, rather than adding 'undefined'. */
-    "noImplicitReturns": true,                        /* 警告有return的function有可能無返回值，缺少return */
+    "noImplicitReturns": true,                           /* 警告有return的function有可能無返回值，缺少return */
     // "noFallthroughCasesInSwitch": true,               /* Enable error reporting for fallthrough cases in switch statements. */
     // "noUncheckedIndexedAccess": true,                 /* Add 'undefined' to a type when accessed using an index. */
     // "noImplicitOverride": true,                       /* Ensure overriding members in derived classes are marked with an override modifier. */
