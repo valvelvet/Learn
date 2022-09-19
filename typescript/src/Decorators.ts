@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------------------------------------
 // class裝飾器在'定義'時運作，不需要建立實體(new)
 function Logger(constructor: Function) {
-  console.log('定義：' + constructor.name);
+  console.log("定義：" + constructor.name);
 }
 
 @Logger
@@ -11,7 +11,7 @@ class Umbrella {
   static count: number = 0;
   constructor() {
     Umbrella.count++;
-    console.log('已建立第' + Umbrella.count + '個實體：Umbrella');
+    console.log("已建立第" + Umbrella.count + "個實體：Umbrella");
   }
 }
 const newUmbrella = new Umbrella();
@@ -24,16 +24,16 @@ function Logger2(logText: string) {
   console.log(logText);
   // 真正的 Decorator
   return function (constructor: Function) {
-    console.log('定義：' + constructor.name);
+    console.log("定義：" + constructor.name);
   };
 }
 
-@Logger2('Logging2...')
+@Logger2("Logging2...")
 class Umbrella2 {
   static count: number = 0;
   constructor() {
     Umbrella2.count++;
-    console.log('已建立第' + Umbrella2.count + '個實體：Umbrella2');
+    console.log("已建立第" + Umbrella2.count + "個實體：Umbrella2");
   }
 }
 const newUmbrella2 = new Umbrella2();
@@ -41,10 +41,10 @@ const newUmbrella2 = new Umbrella2();
 // ---------------------------------------------------------------------------------------------------------
 // 裝飾器執行順序是由下往上執行的（Bottom-up）
 function Decorator1(_: Function) {
-  console.log('Decorator1...'); //1
+  console.log("Decorator1..."); //1
 }
 function Decorator2(_: Function) {
-  console.log('Decorator2...'); // 2
+  console.log("Decorator2..."); // 2
 }
 
 @Decorator2
@@ -60,19 +60,19 @@ class ReadingDecorators2 {
 // 運作順序：創建的 function的順序(由上至下讀取) -> 執行裝飾器順序(由下至上執行)
 // 回傳的function，才是真正的 Decorator()，只是在外層套一個可接收參數的function，裝飾器執行順序還是由下往上執行的（Bottom-up）
 function Read1(first: string) {
-  console.log('Read1...'); // 2
+  console.log("Read1..."); // 2
   return function (_: Function) {
     console.log(first); // 3
   };
 }
 function Read2(next: string) {
-  console.log('Read2...'); // 1
+  console.log("Read2..."); // 1
   return function (_: Function) {
     console.log(next); // 4
   };
 }
-@Read2('Next')
-@Read1('First')
+@Read2("Next")
+@Read1("First")
 class ReadingDecorators {
   constructor() {}
 }
@@ -91,25 +91,25 @@ class ReadingDecorators {
 // Property Decorator 	欄位裝飾器	(target: any, propertyKey: string) => void
 // Parameter Decorator 	參數裝飾器	(target: any, propertyKey: string, parameterIndex: number) => void
 function ClassDecorator(target: any) {
-  console.log('--- 類別裝飾器 ---');
-  console.log('target: \n', target);
+  console.log("--- 類別裝飾器 ---");
+  console.log("target: \n", target);
 }
 function MethodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-  console.log('--- 方法裝飾器 ---');
-  console.log('target: \n', target);
-  console.log('propertyKey: \n', propertyKey);
-  console.log('descriptor: \n', descriptor);
+  console.log("--- 方法裝飾器 ---");
+  console.log("target: \n", target);
+  console.log("propertyKey: \n", propertyKey);
+  console.log("descriptor: \n", descriptor);
 }
 function PropertyDecorator(target: any, propertyKey: string) {
-  console.log('--- 欄位裝飾器 ---');
-  console.log('target: \n', target);
-  console.log('propertyKey: \n', propertyKey);
+  console.log("--- 欄位裝飾器 ---");
+  console.log("target: \n", target);
+  console.log("propertyKey: \n", propertyKey);
 }
 function ParameterDecorator(target: any, propertyKey: string, parameterIndex: number) {
-  console.log('--- 參數裝飾器 ---');
-  console.log('target: \n', target);
-  console.log('propertyKey: \n', propertyKey);
-  console.log('parameterIndex: \n', parameterIndex);
+  console.log("--- 參數裝飾器 ---");
+  console.log("target: \n", target);
+  console.log("propertyKey: \n", propertyKey);
+  console.log("parameterIndex: \n", parameterIndex);
 }
 
 @ClassDecorator
@@ -133,7 +133,7 @@ class Decorators {
   }
 }
 
-const decorator = new Decorators('Hi new Decorator.');
+const decorator = new Decorators("Hi new Decorator.");
 
 // ---------------------------------------------------------------------------------------------------------
 // 練習：自訂綁定
@@ -147,7 +147,7 @@ const decorator = new Decorators('Hi new Decorator.');
 //  - Methods 方法：
 //      get(): any
 //      set(v: any): void
-function AutoBind(_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
+function autoBind(_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
   const adjDescriptor: PropertyDescriptor = {
     configurable: true,
@@ -161,15 +161,15 @@ function AutoBind(_target: any, _propertyKey: string, descriptor: PropertyDescri
 }
 
 class Printer {
-  message = '有用噠';
+  message = "有用噠";
 
-  @AutoBind
+  @autoBind
   showMessage() {
     console.log(this.message);
   }
 }
 const p = new Printer();
-document.getElementsByTagName('button')![0].addEventListener('click', p.showMessage);
+document.getElementsByTagName("button")![0].addEventListener("click", p.showMessage);
 
 // ---------------------------------------------------------------------------------------------------------
 // 練習：輸入驗證
@@ -202,7 +202,7 @@ function RequiredInput(target: any, propertyKey: string) {
   // target.constructor.name 指為 class名稱 "SomeCuteItem"
   registeredValidators[target.constructor.name] = {
     ...registeredValidators[target.constructor.name],
-    [propertyKey]: [...(registeredValidators[target.constructor.name]?.[propertyKey] ?? []), 'required']
+    [propertyKey]: [...(registeredValidators[target.constructor.name]?.[propertyKey] ?? []), "required"],
   };
 }
 
@@ -210,7 +210,7 @@ function PositiveNumber(target: any, propertyKey: string) {
   // 正數驗證登記
   registeredValidators[target.constructor.name] = {
     ...registeredValidators[target.constructor.name],
-    [propertyKey]: [...(registeredValidators[target.constructor.name]?.[propertyKey] ?? []), 'positive']
+    [propertyKey]: [...(registeredValidators[target.constructor.name]?.[propertyKey] ?? []), "positive"],
   };
 }
 
@@ -218,19 +218,19 @@ function validate(obj: any) {
   // 驗證工作寫在這
   const objValidatorConfig = registeredValidators[obj.constructor.name];
   if (!objValidatorConfig) {
-    return ''; // class 名稱未登記過 == 不需驗證 == 驗證通過返回true
+    return ""; // class 名稱未登記過 == 不需驗證 == 驗證通過返回true
   }
-  let errorString: string = '';
+  let errorString: string = "";
   for (const prop in objValidatorConfig) {
     // prop:參數名稱
     for (const val in objValidatorConfig[prop]) {
       // val:做什麼驗證
       switch (objValidatorConfig[prop][val]) {
-        case 'required': // 驗證是否存在
-          errorString += !!obj[prop] ? '' : prop + ' 必填\n';
+        case "required": // 驗證是否存在
+          errorString += !!obj[prop] ? "" : prop + " 必填\n";
           break;
-        case 'positive': // 驗證是否為正
-          errorString += obj[prop] > 0 ? '' : prop + ' 須為正數\n';
+        case "positive": // 驗證是否為正
+          errorString += obj[prop] > 0 ? "" : prop + " 須為正數\n";
           break;
         default:
           break;
@@ -253,11 +253,11 @@ class SomeCuteItem {
   }
 }
 
-const item = document.querySelector('form')!;
-item.addEventListener('submit', (event) => {
+const item = document.querySelector("form")!;
+item.addEventListener("submit", (event) => {
   event.preventDefault();
-  const nameEl = document.getElementById('prodName') as HTMLInputElement;
-  const priceEl = document.getElementById('price') as HTMLInputElement;
+  const nameEl = document.getElementById("prodName") as HTMLInputElement;
+  const priceEl = document.getElementById("price") as HTMLInputElement;
 
   const prodName = nameEl.value;
   const price = +priceEl.value;
