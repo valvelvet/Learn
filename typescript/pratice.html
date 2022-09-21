@@ -6,10 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>出門清單</title>
     <link rel="stylesheet" href="src/pratice/pratice.css" />
-    <script src="dist/pratice/app.js" defer></script>
+    <script src="dist/bundle.js" defer></script>
   </head>
 
   <body>
+	<input type="text" placeholder="名稱" id="user-input">
+    <button>CLick!</button>
+    <form>
+      <input type="text" placeholder="名稱" id="prodName" />
+      <input type="text" placeholder="價格" id="price" />
+      <button type="submit">送出</button>
+    </form>
     <template id="project-input">
       <form>
         <div class="form-control">
