@@ -15,14 +15,24 @@
 // /// <reference path="decorators/autobind.ts" />
 // // ◆Component Base Class
 // /// <reference path="components/base.ts" />
-// ◆ProjectList Class
-/// <reference path="components/project-list.ts" />
-// ◆ProjectInput Class
-/// <reference path="components/project-input.ts" />
+// // ◆ProjectList Class
+// ▼/// <reference path="components/project-list.ts" />
+// import { ProjectList } from "./components/project-list.js"; 				// ES-Module import
+// import { ProjectList as PJL } from "./components/project-list.js"; // import 使用別名導入 -- 1:導入指定項
+import * as PJL from "./components/project-list.js"; 							// import 使用別名導入 -- 2:導入全部
+// // ◆ProjectInput Class
+// ▼/// <reference path="components/project-input.ts" />
+// import { ProjectInput } from "./components/project-input.js";			// ES-Module import
+import PJI from "./components/project-input.js";									// 導入 default:可重命別名
 
-// ▼需用 namespace包起來才能
-namespace App {
-  new ProjectInput();
-  new ProjectList("active");
-  new ProjectList("finished");
-}
+// ▼需用 namespace包起來才能用
+// ▼namespace App {
+// new ProjectList("active");				// ES-Module import
+// new ProjectList("finished");			// ES-Module import
+// new PJL("active");								// import 使用別名導入 -- 1:導入指定項
+// new PJL("finished");							// import 使用別名導入 -- 1:導入指定項
+new PJL.ProjectList("active");		// import 使用別名導入 -- 2:導入全部
+new PJL.ProjectList("finished");	// import 使用別名導入 -- 2:導入全部
+// new ProjectInput();							// ES-Module import
+new PJI();												// 導入 default:可重命別名
+// ▼}
