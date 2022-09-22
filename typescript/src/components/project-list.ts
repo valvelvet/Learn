@@ -1,21 +1,21 @@
 // ◆ProjectItem Class
 //  ▼/// <reference path="./project-item.ts" />
-import { ProjectItem } from "./project-item.js";
+import { ProjectItem } from "./project-item";
 // ◆Drag & Drop Interface
 //  ▼/// <reference path="../model/drag-drop.ts" />
-import { Dragtarget } from "../model/drag-drop.js";
+import { Dragtarget } from "../model/drag-drop";
 // Project type
 //  ▼/// <reference path="./model/project.ts" />
-import { Project, ProjectStatus } from "../model/project.js";
+import { Project, ProjectStatus } from "../model/project";
 // ◆Project State Management 狀態管理
 //  ▼/// <reference path="../state/project.ts" />
-import { projectState } from "../state/project.js";
+import { projectState } from "../state/project";
 // ◆autoBind decorators 裝飾器
 //  ▼/// <reference path="../decorators/autobind.ts" />
-import { AutoBind } from "../decorators/autobind.js";
+import { AutoBind } from "../decorators/autobind";
 // ◆Component Base Class
 //  ▼/// <reference path="./base.ts" />
-import { Component } from "./base.js";
+import { Component } from "./base";
 
 // ProjectList Class
 // ▼namespace App {

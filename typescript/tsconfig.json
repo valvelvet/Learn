@@ -11,7 +11,7 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "ESNext",                                  /* 設定編譯的js版本，ex:es5,es6 */
+    "target": "ES6",                                  /* 設定編譯的js版本，ex:es5,es6 */
     // "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     "experimentalDecorators": true,                      /* 使用裝飾器 Enable experimental support for TC39 stage 2 draft decorators. */
@@ -26,7 +26,7 @@
 
     /* Modules */
     "module": "ES6",                                /* commonjs/AMD/ES6 Specify what module code is generated. */
-    "rootDir": "./src",                                  /* 從哪個資料夾抓檔案編譯，ex:"./src"，編譯時會保留資料夾結構 */
+    // "rootDir": "./src",                               /* 從哪個資料夾抓檔案編譯，ex:"./src"，編譯時會保留資料夾結構 */
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
@@ -47,7 +47,7 @@
     // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
     // "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
-    // "sourceMap": true,                                /* 開啟後會編譯出".js.map"檔，可在開發者工具中直接看到ts檔 */
+    "sourceMap": true,                                   /* 開啟後會編譯出".js.map"檔，可在開發者工具中直接看到ts檔 */
     // "outFile": "./dist/bundle.js",                    /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
     "outDir": "./dist",                                  /* 編譯後檔案存放處，ex:"./dist"，編譯時會保留資料夾結構 */
     // "removeComments": true,                           /* 不編譯所有註解 */

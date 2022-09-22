@@ -1,15 +1,15 @@
 // ◆Drag & Drop Interface
 //  ▼/// <reference path="../model/drag-drop.ts" />
-import { Draggable } from "../model/drag-drop.js";
+import { Draggable } from "../model/drag-drop";
 // ◆Project type
 //  ▼/// <reference path="../model/project.ts" />
-import { Project } from "../model/project.js";
+import { Project } from "../model/project";
 // ◆autoBind decorators 裝飾器
 //  ▼/// <reference path="../decorators/autobind.ts" />
-import { AutoBind } from "../decorators/autobind.js";
+import { AutoBind } from "../decorators/autobind";
 // ◆Component Base Class
 //  ▼/// <reference path="./base.ts" />
-import { Component } from "./base.js";
+import { Component } from "./base";
 
 // ProjectItem Class
 // ▼namespace App {

@@ -1,15 +1,15 @@
 // ◆Project State Management 狀態管理
 //  ▼/// <reference path="../state/project.ts" />
-import { projectState } from "../state/project.js";
+import { projectState } from "../state/project";
 // ◆輸入驗證
 //  ▼/// <reference path="./util/validation.ts" />
-import { Validate } from "../util/validation.js";
+import { Validate } from "../util/validation";
 // ◆autoBind decorators 裝飾器
 //  ▼/// <reference path="../decorators/autobind.ts" />
-import { AutoBind } from "../decorators/autobind.js";
+import { AutoBind } from "../decorators/autobind";
 // ◆Component Base Class
 //  ▼/// <reference path="./base.ts" />
-import { Component } from "./base.js";
+import { Component } from "./base";
 
 // ProjectInput Class
 // ▼namespace App {
