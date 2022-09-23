@@ -11,7 +11,7 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "ESNext",                                  /* 設定編譯的js版本，ex:es5,es6 */
+    "target": "ES6",                                  /* 設定編譯的js版本，ex:es5,es6 */
     // "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     "experimentalDecorators": true,                      /* 使用裝飾器 Enable experimental support for TC39 stage 2 draft decorators. */
