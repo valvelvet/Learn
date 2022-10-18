@@ -11,7 +11,7 @@ class Umbrella {
   static count: number = 0;
   constructor() {
     Umbrella.count++;
-    console.log("已建立第" + Umbrella.count + "個實體：Umbrella");
+    console.log("Umbrella已建立第" + Umbrella.count + "個實體");
   }
 }
 const newUmbrella = new Umbrella();
@@ -22,8 +22,7 @@ const newUmbrella = new Umbrella();
 // 回傳的 function，才是真正的 Decorator()，只是在外層套一個可接收參數的 function，
 function Logger2(logText: string) {
   console.log(logText);
-  // 真正的 Decorator
-  return function (constructor: Function) {
+  return function (constructor: Function) { // return 真正的 Decorator
     console.log("定義：" + constructor.name);
   };
 }
@@ -33,7 +32,7 @@ class Umbrella2 {
   static count: number = 0;
   constructor() {
     Umbrella2.count++;
-    console.log("已建立第" + Umbrella2.count + "個實體：Umbrella2");
+    console.log("Umbrella2已建立第" + Umbrella2.count + "個實體");
   }
 }
 const newUmbrella2 = new Umbrella2();
@@ -93,6 +92,7 @@ class ReadingDecorators {
 function ClassDecorator(target: any) {
   console.log("--- 類別裝飾器 ---");
   console.log("target: \n", target);
+  console.log("target.name: \n", target.name);
 }
 function MethodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   console.log("--- 方法裝飾器 ---");
@@ -108,6 +108,7 @@ function PropertyDecorator(target: any, propertyKey: string) {
 function ParameterDecorator(target: any, propertyKey: string, parameterIndex: number) {
   console.log("--- 參數裝飾器 ---");
   console.log("target: \n", target);
+  console.log("target.name: \n", target.name);
   console.log("propertyKey: \n", propertyKey);
   console.log("parameterIndex: \n", parameterIndex);
 }

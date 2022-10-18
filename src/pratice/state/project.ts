@@ -1,4 +1,4 @@
-import { Project, ProjectStatus } from "../model/project";
+import { Project, ProjectStatus } from "../model/project.js";
 
 // Project State Management 狀態管理
 // ▼namespace App{

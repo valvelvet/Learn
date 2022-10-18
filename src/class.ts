@@ -42,8 +42,7 @@ class Player {
   // public readonly uuID: string;		// readonly 可在這設定
   // private character: string;
 
-  constructor(public readonly uuID: string, private character: string) {
-    // readonly 也可在這設定
+  constructor(public readonly uuID: string, private character: string) { // readonly 也可在這設定
     // this.uuID = uuID;
     // this.character = character;
   }
@@ -62,7 +61,7 @@ class VIPPlayer extends Player {
   public VIPLevel: number;
   constructor(uuID: string, VIPLevel: number) {
     super(uuID, 'VIP玩家'); // super()調用 父class 的初始化 constructor();
-    this.VIPLevel = VIPLevel; // 對子類別的初始化，需在super()後
+    this.VIPLevel = VIPLevel; // 對子類別的初始化，需在super()後，否則會error
   }
 }
 class professionalPlayer extends Player {
@@ -81,14 +80,23 @@ const NewprofessionalPlayer = new professionalPlayer('09-22113344', ['Apex：賽
 NewprofessionalPlayer.showInfo();
 NewprofessionalPlayer.showTrophy();
 
+console.log(NewprofessionalPlayer.uuID); // 可讀取父類別的 public
+// console.log(NewprofessionalPlayer.character); // 讀取父類別的 private或 protected，TS會警告，編譯不會error
+
 // ---------------------------------------------------------------------------------------------------------
-// Protected 子類別無法使用父類別的private，protected可授權子類別使用，又能保有私有性質
+// Protected
+// 子類別無法使用父類別的 private，protected可授權子類別使用，又能保有私有性質
+// 父類別 Book：
+//   public bookName: string;
+//   private author: string;
+//   protected price: number;
 class SaleBook extends Book {
   constructor() {
     super('企鵝家族', '軼名', 500);
   }
   sale(discount: number) {
-    this.price *= discount;
+    // this.author = "XXX"; // 使用父類別的 private，TS會警告，編譯不會error
+    this.price *= discount; // 可使用父類別的 protected
   }
 }
 const NewSaleBook = new SaleBook();
@@ -145,7 +153,7 @@ class SerpriceBox {
 }
 const NewSerpriceBox = new SerpriceBox();
 console.log('顏色：' + NewSerpriceBox.boxColor + '\n重量：' + NewSerpriceBox.boxWeight); // getter
-// NewSerpriceBox.boxColor = 'orange';
+// NewSerpriceBox.boxColor = 'orange'; // 通過 setter可設定驗證，過濾輸入的內容
 NewSerpriceBox.boxColor = 'blue'; // setter
 NewSerpriceBox.boxWeight = 3.8; // setter
 console.log('顏色：' + NewSerpriceBox.boxColor + '\n重量：' + NewSerpriceBox.boxWeight); // getter
@@ -163,15 +171,16 @@ class Humen {
     return '外觀：' + skin + '，超能力：' + power;
   }
   // 在class內部以class名稱取用(非this)，ex: Humen
-  showInfo(this: Humen) {
-    // console.log('眼睛：' + this.outward.eyes + '\n智慧生物：' + this.outward.smart);
-    console.log('眼睛：' + Humen.outward.eyes + '\n智慧生物：' + Humen.outward.smart);
+  // showInfo(this: Humen) {
+  static get showInfo() {
+    // '眼睛：' + this.outward.eyes + '\n智慧生物：' + this.outward.smart;
+    return '眼睛：' + Humen.outward.eyes + '\n智慧生物：' + Humen.outward.smart;
   }
 }
-console.log(Humen.outward);
+console.log(Humen.outward); // 不用new就能直接使用
 console.log(Humen.tryNewHumen('沼澤貓貓', '死亡旋轉'));
-const NewHumen = new Humen();
-NewHumen.showInfo();
+const NewHumen = Humen.showInfo;
+console.log(NewHumen);
 
 // ---------------------------------------------------------------------------------------------------------
 // 複寫：showInfo()
@@ -206,9 +215,8 @@ class WizardCharacter extends Character {
   constructor(characterName: string, setPoint: string) {
     super(characterName, setPoint, '法師');
   }
-  device(this: WizardCharacter) {
-    // abstract 方法：子類別定義'方法內容'
-    console.log('0級：50度保溫；30級：87度沖咖啡；70級：120度火焰燒酒；100級：200度定溫烘烤');
+  device(this: WizardCharacter) { // abstract 方法：子類別定義'方法內容'
+    console.log('0級：50度保溫；30級：87度手沖咖啡；70級：120度火焰燒酒；100級：200度定溫烘培');
   }
 }
 
@@ -216,13 +224,13 @@ class FighterCharacter extends Character {
   constructor(characterName: string, setPoint: string) {
     super(characterName, setPoint, '狂戰士');
   }
-  device(this: FighterCharacter) {
-    // abstract 方法：子類別定義'方法內容'
+  device(this: FighterCharacter) { // abstract 方法：子類別定義'方法內容'
     console.log('0級：廚餘打包；30級：炒飯浪；70級：打發蛋白手；120級：忍者空中切');
   }
 }
-// const NewCharacter = new Character();	// abstract class 抽象類別：無法建立實體(不能new)
-const NewWizardCharacter = new WizardCharacter('乂煞氣乂', '與世隔絕村');
+// const NewCharacter = new Character('淼焱森鑫垚', '三生橋', '牧師'); // abstract class 抽象類別：無法建立實體(不能new)，TS會警告，編譯不會error
+// NewCharacter.showInfo();
+const NewWizardCharacter = new WizardCharacter('乂煞氣ㄟ豬豬乂', '與世隔絕村');
 NewWizardCharacter.showInfo();
 NewWizardCharacter.device();
 const NewFighterCharacter = new FighterCharacter('卍沒有未來卍', '花火城');
@@ -247,3 +255,5 @@ class Earth {
 const myEarth = Earth.getInstance();
 const myEarth2 = Earth.getInstance();
 console.log(myEarth,myEarth2);	// 應為一模一樣
+myEarth.radius = 6500;	// 修改一個參數
+console.log(myEarth,myEarth2);	// 也應為一模一樣

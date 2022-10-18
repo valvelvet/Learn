@@ -29,11 +29,13 @@ enum EnterID { Customer, System, Viewer }
 
 // 類型(別名)  Type Aliases   type
 // 聯合類型    Union Types    |
-type User = { name: string; age: number | string };
+type UserName = { name: string; };
+type UserAge = {age: number | string };
+type User = UserName & UserAge & { school: string };
 function greet(user: User) {
-  console.log('Hi, I am ' + user.name);
+  console.log('我叫' + user.name + "，今年" + user.age + "歲，就讀" + user.school);
 }
-
+greet({ name: '小亭', age: 10, school: 'ＯＯ國小' });
 // function type		void Unknown never
 // Literal Types
 
@@ -44,7 +46,7 @@ interface Building { name: string; birth: number; }
 // type 跟 interface 差別：
 //           | 新增/擴展?   | 修改?
 // Type      | &          | 創建後無法更改
-// Interface | extends    | Adding new fields to an existing interface
+// Interface | extends    | 可向現有界面添加新字段
 type Animal = { name: string };
 type Bear = Animal & { honey: boolean; };
 

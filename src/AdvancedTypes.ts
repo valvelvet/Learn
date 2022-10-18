@@ -1,5 +1,5 @@
 // Advanced Types
-
+// More About Types 關於型別
 // ---------------------------------------------------------------------------------------------------------
 // &：交集運算符
 // 用在 object的情況
@@ -165,7 +165,7 @@ function Add(a: A_ID, b: A_ID) {
   return a + b;
 }
 const result = Add(10, ' 3'); // result: string | number
-result.split('s'); // .split為 string的方法，若沒有 overload強制註記型別，string | number的型別會出錯
+result.split('s'); // .split為 string的方法，若沒有 overload強制註記型別，string | number的型別 TS會警告，編譯不會error
 
 // ---------------------------------------------------------------------------------------------------------
 // ?.：可選鏈接運算符 Optional Chaining operator

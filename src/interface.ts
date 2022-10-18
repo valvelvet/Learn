@@ -90,4 +90,4 @@ class MilkTea implements Drink {
   }
 }
 const myMilkTea:Drink = new MilkTea('早餐店奶茶');	// suger為可選擇的變數，不input不會error
-console.log(myMilkTea.suger);
+console.log(myMilkTea.suger); // 預設值為：undefined
