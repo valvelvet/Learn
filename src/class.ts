@@ -2,20 +2,35 @@ class Book {
   public bookName: string; // public：為預設，可不寫
   private author: string; // private：私有屬性
   protected price: number; // Protected：子類別無法使用父類別的private，protected可授權子類別使用，又能保有私有性質
+  #ISBN: string;  // JS的私有字段
 
   // 初始化
-  constructor(name: string, author: string, price: number) {
+  constructor(name: string, author: string, price: number, ISBN: string) {
     this.bookName = name;
     this.author = author;
     this.price = price;
+    this.#ISBN = ISBN;
   }
 
   showInfo(this: Book) {
-    console.log('書名：' + this.bookName + '\n作者：' + this.author + '\n價格：$' + this.price);
+    console.log('ISBN：' + this.#ISBN + '\n書名：' + this.bookName + '\n作者：' + this.author + '\n價格：$' + this.price);
   }
 }
-const newbook = new Book('子兒吐吐', '無名', 399);
+const newbook = new Book('子兒吐吐', '無名', 399, '9789861610597');
 newbook.showInfo();
+
+// public
+console.log(newbook.bookName);
+
+// 軟私有：ts會檢查，但編譯後仍可從外部訪問到
+// console.log(newbook.author);   // private：ts檢查 error
+console.log(newbook["author"]);   // private：括號表示法會通過 ts檢查
+// console.log(newbook.price);   // protected：ts檢查 error
+console.log(newbook["price"]);   // protected：括號表示法會通過 ts檢查
+
+// 硬私有：可以使括號表示法也失敗，編譯後也無法訪問
+// console.log(newbook.#ISBN);
+// console.log(newbook["#ISBN"]);
 
 // ---------------------------------------------------------------------------------------------------------
 // constructor 初始化簡寫
@@ -23,8 +38,7 @@ class Author {
   // public authorName: string;	省
   // private birth: number;			省
 
-  constructor(public authorName: string, private birth: number) {
-    // 集中在此設置
+  constructor(public authorName: string, private birth: number) { // 簡寫在此設置type、預設值、初始值
     // this.authorName = name;	省
     // this.birth = birth;			省
   }
@@ -90,9 +104,10 @@ console.log(NewprofessionalPlayer.uuID); // 可讀取父類別的 public
 //   public bookName: string;
 //   private author: string;
 //   protected price: number;
+//   #ISBN: string;
 class SaleBook extends Book {
   constructor() {
-    super('企鵝家族', '軼名', 500);
+    super('企鵝家族', '軼名', 500, '9789620873157');
   }
   sale(discount: number) {
     // this.author = "XXX"; // 使用父類別的 private，TS會警告，編譯不會error

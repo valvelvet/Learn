@@ -2,25 +2,25 @@
 
 // ---------------------------------------------------------------------------------------------------------
 // 泛型 - function
-// function merge(objA: object, objB: object) {	// 型別判斷輸出為 object
-//   return Object.assign(objA, objB);
-// }
-// const mergeObj = merge({ name: 'Frank' }, { age: 33 });
-// console.log(mergeObj);		// mergeObj型別判斷為 object
-// console.log(mergeObj.age);	// 但不知道此 object具體組成
+function returnObj(obj: object) {	// 型別判斷輸出為 object
+  return obj;
+}
+const returnObjObj = returnObj({ name: 'Frank' });
+console.log(returnObjObj);		// returnObjObj 型別判斷為 object
+// console.log(returnObjObj.name);	// 但不知道此 object具體組成
 
 // 使用泛型，將型別像是參數一樣使用
-// function輸出提示為：T & U
-function merge<T extends object, U>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
+// function 輸出提示為：U
+function returnItem<U>(item: U) {
+  return item;
 }
-const mergeObj = merge({ name: "Frank" }, { age: 33 }); // mergeObj的型別判斷：{name: string;} & {age: number;}
-console.log(mergeObj);
-console.log(mergeObj.name); // 型別判斷：{name: string;} & {age: number;} 有 name，故不會error
+const anObj = returnItem({ age: 33 }); // anObj的型別判斷：{age: number;}
+console.log(anObj);
+console.log(anObj.age); // 型別判斷：{age: number;} 有 age，故不會error
 
 // ---------------------------------------------------------------------------------------------------------
 // extends 約束
-// 需求只要 input有 length屬性
+// 需求舉例：function只要 input有 length屬性就能使用
 // 若使用聯合型別(string| string[]...)可能漏寫有 length屬性的型別，也將無法使用後來自訂包含 length的型別
 // 若使用函示超載(overload)也有疏漏的可能，code也超長
 // 使用泛型可以更靈活，不用在乎具體的型別，只要約束(extends) input有 length屬性
@@ -50,7 +50,7 @@ console.log(extractAndConvert({ id: 30011, name: "Sam" }, "id"));
 // ---------------------------------------------------------------------------------------------------------
 // 泛型 - class
 class DataStorage<T extends number | string | boolean> {
-  // 在此例中不要extends object，限制類別，避免陣列刪除物件時有不同狀況
+  // 在此例中不要 extends object，限制類別，避免陣列刪除物件時有不同狀況
   private data: T[] = [];
   addItem(item: T) {
     this.data.push(item);
@@ -69,6 +69,13 @@ numberStorage.addItem(290);
 console.log(numberStorage.getItem());
 numberStorage.removeItem(10);
 console.log(numberStorage.getItem());
+
+// 泛型 - 型別 Types
+type SituationPuzzle<T> = { [prop: string]: T };
+// 泛型 - 介面 Interface
+interface TagList<T> {
+  tag: T | null;
+}
 
 // ---------------------------------------------------------------------------------------------------------
 // Utility Types 實用程序類型

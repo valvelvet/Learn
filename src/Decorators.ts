@@ -7,19 +7,19 @@ function Logger(constructor: Function) {
 }
 
 @Logger
-class Umbrella {
+class Home {
   static count: number = 0;
   constructor() {
-    Umbrella.count++;
-    console.log("Umbrella已建立第" + Umbrella.count + "個實體");
+    Home.count++;
+    console.log("Home已建立第" + Home.count + "個實體");
   }
 }
-const newUmbrella = new Umbrella();
+const newHome = new Home();
 
 // ---------------------------------------------------------------------------------------------------------
 // Decorator Factory 裝飾器工廠
 // 就是在 Decorator外再包一層 function，外層的 function要回傳的則是真正的 Decorator，這時外層接收的參數就可以在要回傳的 Decorator中應用
-// 回傳的 function，才是真正的 Decorator()，只是在外層套一個可接收參數的 function，
+// 回傳的 function，才是真正的 Decorator()，只是在外層套一個可接收參數的 function
 function Logger2(logText: string) {
   console.log(logText);
   return function (constructor: Function) { // return 真正的 Decorator
@@ -28,14 +28,14 @@ function Logger2(logText: string) {
 }
 
 @Logger2("Logging2...")
-class Umbrella2 {
+class School {
   static count: number = 0;
   constructor() {
-    Umbrella2.count++;
-    console.log("Umbrella2已建立第" + Umbrella2.count + "個實體");
+    School.count++;
+    console.log("School已建立第" + School.count + "個實體");
   }
 }
-const newUmbrella2 = new Umbrella2();
+const newSchool = new School();
 
 // ---------------------------------------------------------------------------------------------------------
 // 裝飾器執行順序是由下往上執行的（Bottom-up）
