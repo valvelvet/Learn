@@ -90,11 +90,9 @@ interface Story {
 interface History extends Story {
   truely: boolean;
 }
-
-// interface Window { title: string; };
-// interface Window { ts: TypeScriptAPI; };
-// const src = 'const a = "Hello World"';
-// window.ts.transpileModule(src, {});
+interface Story {
+  year: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------
 // 列舉       Enum			{}
